@@ -1,12 +1,16 @@
 import React from "react";
-import { StyleSheet, View, Text, Button } from "react-native";
+import { StyleSheet, View, Button, Image } from "react-native";
+
+import TitleText from "../components/TitleText";
+import BodyText from "../components/BodyText";
 
 const GameOverScreen = (props) => {
   return (
     <View style={styles.screen}>
-      <Text>The Game is Over!</Text>
-      <Text>Number of rounds: {props.roundsNumber}</Text>
-      <Text>Number was: {props.userNumber}</Text>
+      <TitleText>The Game is Over!</TitleText>
+      <Image source={require("../assets/success.png")} />
+      <BodyText>Number of rounds: {props.roundsNumber}</BodyText>
+      <BodyText>Number was: {props.userNumber}</BodyText>
       <Button title={"NEW GAME"} onPress={props.onRestart} />
     </View>
   );

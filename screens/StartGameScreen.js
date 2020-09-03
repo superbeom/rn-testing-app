@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   StyleSheet,
   View,
-  Text,
   Button,
   TouchableWithoutFeedback,
   Keyboard,
@@ -12,7 +11,8 @@ import {
 import Card from "../components/Card";
 import Input from "../components/Input";
 import NumberContainer from "../components/NumberContainer";
-import TextStyle from "../constants/texts";
+import TitleText from "../components/TitleText";
+import BodyText from "../components/BodyText";
 import colors from "../constants/colors";
 
 const StartGameScreen = (props) => {
@@ -51,7 +51,7 @@ const StartGameScreen = (props) => {
   if (confirmed) {
     confirmedOutput = (
       <Card style={styles.summaryContainer}>
-        <Text style={TextStyle.bodyText}>You selected</Text>
+        <BodyText>You selected</BodyText>
         <NumberContainer>{selectedNumber}</NumberContainer>
         <Button
           title={"START GAME"}
@@ -64,11 +64,9 @@ const StartGameScreen = (props) => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.screen}>
-        <Text style={[TextStyle.titleText, styles.title]}>
-          Start a New Game!
-        </Text>
+        <TitleText style={styles.title}>Start a New Game!</TitleText>
         <Card style={styles.inputContainer}>
-          <Text style={TextStyle.bodyText}>Select a Number</Text>
+          <BodyText>Select a Number</BodyText>
           <Input
             style={styles.input}
             maxLength={2}
