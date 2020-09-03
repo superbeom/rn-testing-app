@@ -76,8 +76,10 @@ const GameScreen = ({ userChoice, onGameOver }) => {
           <Ionicons name="md-add" size={24} color="white" />
         </MainButton>
       </Card>
-      <View style={styles.list}>
-        <ScrollView>
+      {/* ScrollView를 View로 감싸서 flex: 1 설정해 줘야,
+          스크롤이 제대로 나타남 */}
+      <View style={styles.listContainer}>
+        <ScrollView contentContainerStyle={styles.list}>
           {pastGuesses.map((guess, index) =>
             renderListItem(guess, pastGuesses.length - index)
           )}
@@ -100,11 +102,16 @@ const styles = StyleSheet.create({
     width: 300,
     maxWidth: "80%",
   },
-  list: {
+  listContainer: {
     flex: 1,
-    width: "60%",
+  },
+  list: {
+    flexGrow: 1,
+    alignItems: "center",
+    justifyContent: "flex-end",
   },
   listItem: {
+    width: "60%",
     flexDirection: "row",
     borderWidth: 1,
     borderColor: "#ccc",
