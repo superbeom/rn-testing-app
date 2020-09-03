@@ -1,12 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  Alert,
-  ScrollView,
-  FlatList,
-} from "react-native";
+import { StyleSheet, View, Text, Alert, FlatList } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import NumberContainer from "../components/NumberContainer";
