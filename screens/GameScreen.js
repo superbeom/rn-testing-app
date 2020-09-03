@@ -1,5 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { StyleSheet, View, Text, Alert, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Alert,
+  ScrollView,
+  FlatList,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import NumberContainer from "../components/NumberContainer";
@@ -19,7 +26,7 @@ const generateRandomBetween = (min, max, exclude) => {
 };
 
 const renderListItem = (value, numOfRound) => (
-  <View key={value} style={styles.listItem}>
+  <View style={styles.listItem}>
     <BodyText>#{numOfRound}</BodyText>
     <BodyText>{value}</BodyText>
   </View>
@@ -79,11 +86,14 @@ const GameScreen = ({ userChoice, onGameOver }) => {
       {/* ScrollView를 View로 감싸서 flex: 1 설정해 줘야,
           스크롤이 제대로 나타남 */}
       <View style={styles.listContainer}>
-        <ScrollView contentContainerStyle={styles.list}>
-          {pastGuesses.map((guess, index) =>
-            renderListItem(guess, pastGuesses.length - index)
-          )}
-        </ScrollView>
+        <FlatList
+          data={pastGuesses}
+          renderItem={({ item, index }) =>
+            renderListItem(item, pastGuesses.length - index)
+          }
+          keyExtractor={(item) => item.toString()}
+          contentContainerStyle={styles.list}
+        />
       </View>
     </View>
   );
@@ -104,14 +114,13 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     flex: 1,
+    width: "60%",
   },
   list: {
     flexGrow: 1,
-    alignItems: "center",
     justifyContent: "flex-end",
   },
   listItem: {
-    width: "60%",
     flexDirection: "row",
     borderWidth: 1,
     borderColor: "#ccc",
